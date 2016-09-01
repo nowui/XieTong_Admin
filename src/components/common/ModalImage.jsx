@@ -84,9 +84,7 @@ class ModalImage extends React.Component {
     let array = []
 
     for (let key of activeMap.keys()) {
-      array.push({
-        url: key
-      })
+      array.push(key)
     }
 
     activeMap.clear()

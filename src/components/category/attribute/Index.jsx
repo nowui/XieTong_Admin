@@ -165,7 +165,8 @@ class CategoryAttributeIndex extends Component {
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>
-            <Button icon="circle-left" size="default" onClick={this.onClickBack.bind(this)}>返回</Button>
+            <Button icon="circle-left" size="default" className="button-reload" onClick={this.onClickBack.bind(this)}>返回</Button>
+            <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
             <Button type="primary" icon="plus-circle" size="default" onClick={this.onClickAdd.bind(this)} style={{marginLeft: '5px'}}>新增</Button>
           </Col>
         </Row>

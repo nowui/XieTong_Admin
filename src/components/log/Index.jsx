@@ -138,7 +138,7 @@ class LogIndex extends Component {
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>
-            &nbsp;
+            <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
           </Col>
         </Row>
 

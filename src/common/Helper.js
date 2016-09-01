@@ -5,6 +5,7 @@ const Helper = {
   host: 'http://localhost:8080',
   //host: 'http://api.hongluomeng.nowui.com',
   inputWidth: 390,
+  inputSearchWidth: 300,
   formItemLayout: {
     labelCol: { span: 3 },
     wrapperCol: { span: 18 }

@@ -104,7 +104,7 @@ class ProductDetail extends Component {
         self.setState({
           categoryList: categoryList,
           brandList: brandList,
-          product_image: JSON.parse(data.product_image),
+          product_image: data.product_image,
           product_content: data.product_content,
           categoryAttributeList: data.categoryAttributeList,
           categoryAttributeSkuList: categoryAttributeSkuList

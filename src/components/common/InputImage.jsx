@@ -20,7 +20,7 @@ class InputImage extends React.Component {
       let isNotExit = true
 
       for(let k = 0; k < this.props.value.length; k++) {
-        if(list[i].url == this.props.value[k].url) {
+        if(list[i] == this.props.value[k]) {
           isNotExit = false
 
           break
@@ -28,7 +28,7 @@ class InputImage extends React.Component {
       }
 
       if(isNotExit) {
-        list[i].url = list[i].url.replace(Helper.host, '')
+        list[i] = list[i].replace(Helper.host, '')
 
         array.push(list[i])
       }
@@ -42,7 +42,7 @@ class InputImage extends React.Component {
     let array = this.props.value
 
     for(let i = 0; i < array.length; i++) {
-      if(array[i].url == url) {
+      if(array[i] == url) {
         index = i
       }
     }
@@ -62,11 +62,11 @@ class InputImage extends React.Component {
                 <div key={index} className={"ant-upload-list ant-upload-list-picture-card " + styles.card} style={{overflow: 'visible'}}>
                     <div className="ant-upload-list-item ant-upload-list-item-done" style={{padding: '0px'}}>
                       <div className="ant-upload-list-item-info" >
-                        <a className="ant-upload-list-item-thumbnail" style={{backgroundImage: 'url(' + Helper.host + item.url + ')', backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: 'no-repeat'}}>
+                        <a className="ant-upload-list-item-thumbnail" style={{backgroundImage: 'url(' + Helper.host + item + ')', backgroundPosition: 'center', backgroundSize: 'contain', backgroundRepeat: 'no-repeat'}}>
                         </a>
                       </div>
                     </div>
-                    <i className={"anticon anticon-cross-circle " + styles.close} onClick={this.onClickCloseImage.bind(this, item.url)}></i>
+                    <i className={"anticon anticon-cross-circle " + styles.close} onClick={this.onClickCloseImage.bind(this, item)}></i>
                 </div>
               )
             }.bind(this))

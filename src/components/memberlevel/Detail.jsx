@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { Spin, Row, Col, Breadcrumb, Button, Form, Input } from 'antd'
+import { Spin, Row, Col, Breadcrumb, Button, Form, Input, InputNumber } from 'antd'
 import Helper from '../../common/Helper'
 
 import styles from '../Style.less'
 
-class MemberDetail extends Component {
+class MemberLevelDetail extends Component {
 
   constructor(props) {
     super(props)
@@ -16,7 +16,7 @@ class MemberDetail extends Component {
   }
 
   componentDidMount() {
-    this.props.onSelectMenu('/member/index')
+    this.props.onSelectMenu('/member/level/index')
 
     this.props.form.setFieldsValue({
 
@@ -35,9 +35,9 @@ class MemberDetail extends Component {
     })
 
     Helper.ajax({
-      url: '/member/find',
+      url: '/member/level/find',
       data: {
-        member_id: self.props.params.member_id
+        member_level_id: self.props.params.member_level_id
       },
       success: function(data) {
         self.props.form.setFieldsValue(data)
@@ -59,7 +59,36 @@ class MemberDetail extends Component {
   onClickSubmit(event) {
     event.preventDefault()
 
-    this.props.router.goBack()
+    this.props.form.validateFields((errors, values) => {
+      if (!!errors) {
+        return
+      }
+
+      let self = this
+
+      self.setState({
+        isLoad: true
+      })
+
+      let type = self.props.route.path.indexOf('/edit') > -1 ? 'update' : 'save'
+
+      values.member_level_id = self.props.params.member_level_id
+
+      Helper.ajax({
+        url: '/member/level/' + type,
+        data: values,
+        success: function(data) {
+          Helper.notificationSuccess()
+
+          self.props.router.goBack()
+        },
+        complete: function() {
+          self.setState({
+            isLoad: false
+          })
+        }
+      })
+    })
   }
 
   render() {
@@ -70,11 +99,11 @@ class MemberDetail extends Component {
     	<Spin size="large" spinning={this.state.isLoad}>
         <Row className="ant-spin-container-header">
           <Col span={12}>
-            <h1>会员表单</h1>
+            <h1>会员等级表单</h1>
             <Breadcrumb>
               <Breadcrumb.Item>系统首页</Breadcrumb.Item>
-              <Breadcrumb.Item>会员列表</Breadcrumb.Item>
-              <Breadcrumb.Item>会员表单</Breadcrumb.Item>
+              <Breadcrumb.Item>会员等级列表</Breadcrumb.Item>
+              <Breadcrumb.Item>会员等级表单</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>
@@ -83,10 +112,10 @@ class MemberDetail extends Component {
         </Row>
         <Form horizontal>
           <FormItem {...Helper.formItemLayout} label="名称" >
-            <Input {...getFieldProps('member_name')} type="text" disabled={true} style={{width: Helper.inputWidth}} placeholder="请输入名称" />
+            <Input {...getFieldProps('member_level_name', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputWidth}} placeholder="请输入名称" />
           </FormItem>
-          <FormItem {...Helper.formItemLayout} label="头像" >
-            <Input {...getFieldProps('member_avatar')} type="text" disabled={true} style={{width: Helper.inputWidth}} placeholder="请输入头像" />
+          <FormItem {...Helper.formItemLayout} label="数值" >
+            <InputNumber {...getFieldProps('member_level_value', {rules: [{type: 'number', required: true, message: Helper.required}]})} style={{width: Helper.inputWidth}} placeholder="请输入数值" min={0} max={99999} />
           </FormItem>
           <FormItem wrapperCol={{offset: Helper.formItemLayout.labelCol.span}}>
             <Button type="primary" icon="check-circle" size="default" onClick={this.onClickSubmit.bind(this)}>确定</Button>
@@ -97,8 +126,8 @@ class MemberDetail extends Component {
   }
 }
 
-MemberDetail = Form.create({
+MemberLevelDetail = Form.create({
 
-})(MemberDetail)
+})(MemberLevelDetail)
 
-export default withRouter(MemberDetail)
+export default withRouter(MemberLevelDetail)

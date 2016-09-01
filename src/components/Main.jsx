@@ -115,7 +115,7 @@ class Main extends Component {
                   )
                 })
               }
-              <Menu.Item><Link to='/logout'><Icon type="logout" />退出系统</Link></Menu.Item>
+              <Menu.Item><Link to='/logout'><Icon type="poweroff" />退出系统</Link></Menu.Item>
             </Menu>
         </aside>
         <div className={styles.content}>

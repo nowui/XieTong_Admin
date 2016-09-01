@@ -9,19 +9,21 @@ const confirm = Modal.confirm
 
 let page = 1
 
-class AttributeIndex extends Component {
+class MemberLevelIndex extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
       isLoad: false,
+      page: page,
+      total: 0,
       list: []
     }
   }
 
   componentDidMount() {
-    this.props.onSelectMenu('/attribute/index')
+    this.props.onSelectMenu('/member/level/index')
 
     this.load(page)
   }
@@ -38,7 +40,7 @@ class AttributeIndex extends Component {
     })
 
     Helper.ajax({
-      url: '/attribute/list',
+      url: '/member/level/list',
       data: {
         page: currentPage,
         limit: Helper.limit
@@ -60,7 +62,7 @@ class AttributeIndex extends Component {
     })
   }
 
-  del = function(attribute_id) {
+  del = function(member_level_id) {
     let self = this
 
     self.setState({
@@ -68,9 +70,9 @@ class AttributeIndex extends Component {
     })
 
     Helper.ajax({
-      url: '/attribute/delete',
+      url: '/member/level/delete',
       data: {
-        attribute_id: attribute_id
+        member_level_id: member_level_id
       },
       success: function(data) {
         self.load(page)
@@ -85,30 +87,30 @@ class AttributeIndex extends Component {
 
   onClickAdd(event) {
     this.props.router.push({
-      pathname: '/attribute/add',
+      pathname: '/member/level/add',
       query: {
 
       }
     })
   }
 
-  onClickEdit(attribute_id) {
+  onClickEdit(member_level_id) {
     this.props.router.push({
-      pathname: '/attribute/edit/' + attribute_id,
+      pathname: '/member/level/edit/' + member_level_id,
       query: {
 
       }
     })
   }
 
-  onClickDel(attribute_id) {
+  onClickDel(member_level_id) {
     let self = this
 
     confirm({
       title: Helper.message,
       content: Helper.delete,
       onOk() {
-        self.del(attribute_id)
+        self.del(member_level_id)
       },
       onCancel() {
 
@@ -119,21 +121,17 @@ class AttributeIndex extends Component {
   render() {
     const columns = [{
       title: '名称',
-      dataIndex: 'attribute_name',
-      key: 'attribute_name'
-    }, {
-      title: '类型',
-      dataIndex: 'attribute_type',
-      key: 'attribute_type'
+      dataIndex: 'member_level_name',
+      key: 'member_level_name'
     }, {
       width: 150,
       title: '操作',
       dataIndex: '',
       render: (text, record, index) => (
         <span>
-          <a onClick={this.onClickEdit.bind(this, record.attribute_id)}>修改</a>
+          <a onClick={this.onClickEdit.bind(this, record.member_level_id)}>修改</a>
           <span className="ant-divider"></span>
-          <a onClick={this.onClickDel.bind(this, record.attribute_id)}>删除</a>
+          <a onClick={this.onClickDel.bind(this, record.member_level_id)}>删除</a>
         </span>
       )
     }]
@@ -149,10 +147,10 @@ class AttributeIndex extends Component {
     	<Spin size="large" spinning={this.state.isLoad}>
         <Row className="ant-spin-container-header">
           <Col span={12}>
-            <h1>属性列表</h1>
+            <h1>会员等级列表</h1>
             <Breadcrumb>
               <Breadcrumb.Item>系统首页</Breadcrumb.Item>
-              <Breadcrumb.Item>属性列表</Breadcrumb.Item>
+              <Breadcrumb.Item>会员等级列表</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>
@@ -167,4 +165,4 @@ class AttributeIndex extends Component {
   }
 }
 
-export default withRouter(AttributeIndex)
+export default withRouter(MemberLevelIndex)

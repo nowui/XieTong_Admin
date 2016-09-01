@@ -150,7 +150,7 @@ class AdminOperation extends Component {
             <Col span={20}>
               <Tree className="myCls" showLine checkable
                 checkedKeys={this.state.checkedKeys}
-                onCheck={this.onCheck}
+                onCheck={this.onCheck.bind(this)}
               >
                 {
                   this.state.operationList.map(function (item, index) {

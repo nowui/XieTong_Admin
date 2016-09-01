@@ -129,8 +129,14 @@ class StudentDetail extends Component {
               }
             </Select>
           </FormItem>
-          <FormItem {...Helper.formItemLayout} label="名称" >
-            <Input {...getFieldProps('student_name', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputWidth}} placeholder="请输入名称" />
+          <FormItem {...Helper.formItemLayout} label="学号" >
+            <Input {...getFieldProps('student_number', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputWidth}} placeholder="请输入学号" />
+          </FormItem>
+          <FormItem {...Helper.formItemLayout} label="姓名" >
+            <Input {...getFieldProps('student_name', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputWidth}} placeholder="请输入姓名" />
+          </FormItem>
+          <FormItem {...Helper.formItemLayout} label="性别" >
+            <Input {...getFieldProps('student_sex', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputWidth}} placeholder="请输入性别" />
           </FormItem>
           <FormItem {...Helper.formItemLayout} label="帐号" >
             <Input {...getFieldProps('user_account', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputWidth}} placeholder="请输入帐号" />

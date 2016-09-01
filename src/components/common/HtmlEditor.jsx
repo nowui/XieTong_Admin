@@ -63,7 +63,7 @@ class HtmlEditor extends React.Component {
     let html = ''
 
     for(let i = 0; i < list.length; i++) {
-      html += '<img src="' + list[i].url + '" />'
+      html += '<img src="' + list[i] + '" />'
     }
 
     this.editor.insertContent(html)

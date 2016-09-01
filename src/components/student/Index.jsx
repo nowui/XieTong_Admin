@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { Spin, Row, Col, Breadcrumb, Table, Button, Modal } from 'antd'
+import { Spin, Row, Col, Breadcrumb, Table, Button, Modal, Form, Input, Select } from 'antd'
 import Helper from '../../common/Helper'
 
 import styles from '../Style.less'
@@ -20,7 +20,8 @@ class StudentIndex extends Component {
       isLoad: false,
       page: page,
       total: 0,
-      list: []
+      list: [],
+      gradeList: []
     }
   }
 
@@ -87,6 +88,10 @@ class StudentIndex extends Component {
     })
   }
 
+  export = function(student_id) {
+    window.open(Helper.host + '/student/export')
+  }
+
   onClickAdd(event) {
     this.props.router.push({
       pathname: '/student/add',
@@ -121,10 +126,26 @@ class StudentIndex extends Component {
   }
 
   render() {
+    const FormItem = Form.Item
+    const Option = Select.Option
+    const { getFieldProps, getFieldError, isFieldValidating } = this.props.form
+
     const columns = [{
-      title: '名称',
+      title: '班级',
+      dataIndex: 'grade_name',
+      key: 'grade_name'
+    }, {
+      title: '姓名',
       dataIndex: 'student_name',
       key: 'student_name'
+    }, {
+      title: '学号',
+      dataIndex: 'student_number',
+      key: 'student_number'
+    }, {
+      title: '性别',
+      dataIndex: 'student_sex',
+      key: 'student_sex'
     }, {
       width: 150,
       title: '操作',
@@ -156,14 +177,48 @@ class StudentIndex extends Component {
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>
+            <Button type="ghost" icon="export" size="default" className="button-reload" onClick={this.export.bind(this, page)}>导出模板</Button>
+            <Button type="ghost" icon="export" size="default" className="button-reload" onClick={this.export.bind(this, page)}>导入数据</Button>
             <Button type="primary" icon="plus-circle" size="default" onClick={this.onClickAdd.bind(this)}>新增</Button>
           </Col>
         </Row>
+
+        <Form horizontal className="ant-advanced-search-form">
+          <Row>
+            <Col sm={12}>
+              <FormItem {...Helper.formItemLayout} label="班级" >
+                <Select {...getFieldProps('grade_id', {rules: [{required: true, message: Helper.required}]})} style={{width: Helper.inputSearchWidth}} placeholder="请选择班级">
+                  {
+                    this.state.gradeList.map(function (item) {
+                      return (
+                        <Option key={item.grade_id} value={item.grade_id}>{item.grade_name}</Option>
+                      )
+                    })
+                  }
+                </Select>
+              </FormItem>
+            </Col>
+            <Col sm={12}>
+              <FormItem {...Helper.formItemLayout} label="姓名" >
+                <Input {...getFieldProps('student_name', {rules: [{required: true, message: Helper.required}]})} type="text" style={{width: Helper.inputSearchWidth}} placeholder="请输入名称" />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12} offset={12} style={{ textAlign: 'right' }}>
+              <Button type="ghost" icon="search" size="default" className="button-reload" onClick={this.load.bind(this, page)}>搜索</Button>
+            </Col>
+          </Row>
+        </Form>
 
         <Table columns={columns} dataSource={this.state.list} pagination={pagination} />
       </Spin>
     )
   }
 }
+
+StudentIndex = Form.create({
+
+})(StudentIndex)
 
 export default withRouter(StudentIndex)
