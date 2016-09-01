@@ -43,6 +43,8 @@ import GradeIndex from '../components/grade/Index'
 import GradeDetail from '../components/grade/Detail'
 import CourseIndex from '../components/course/Index'
 import CourseDetail from '../components/course/Detail'
+import WebConfigIndex from '../components/webconfig/Index'
+import WebConfigDetail from '../components/webconfig/Detail'
 import Helper from '../common/Helper'
 
 const validate = function (next, replace, callback) {
@@ -110,6 +112,9 @@ const Routes = ({ history }) =>
         <Route path="course/index" component={CourseIndex}></Route>
         <Route path="course/add" component={CourseDetail}></Route>
         <Route path="course/edit/:course_id" component={CourseDetail}></Route>
+        <Route path="web/config/index" component={WebConfigIndex}></Route>
+        <Route path="web/config/add" component={WebConfigDetail}></Route>
+        <Route path="web/config/edit/:web_config_id" component={WebConfigDetail}></Route>
     	</Route>
 	    <Route path="login" component={Login}></Route>
         <Route path="logout" component={Logout}></Route>
