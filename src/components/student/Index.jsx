@@ -303,20 +303,20 @@ class StudentIndex extends Component {
     return (
     	<Spin size="large" spinning={this.state.isLoad}>
         <Row className="ant-spin-container-header">
-          <Col span={8}>
+          <Col span={7}>
             <h1>学生列表</h1>
             <Breadcrumb>
               <Breadcrumb.Item>系统首页</Breadcrumb.Item>
               <Breadcrumb.Item>学生列表</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
-          <Col span={16} className={styles.menu}>
+          <Col span={17} className={styles.menu}>
             <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
             <Button type="primary" icon="plus-circle" size="default" style={{ marginRight: '10px' }} onClick={this.onClickAdd.bind(this)}>新增</Button>
             <Button type="default" icon="delete" size="default" className="button-reload" onClick={this.onClickDel2.bind(this)}>删除所选</Button>
             <Button type="default" icon="export" size="default" className="button-reload" onClick={this.export.bind(this, page)}>导出模板</Button>
             <Upload {...props}>
-              <Button type="default" icon="upload" size="default" className="button-reload">导入数据</Button>
+              <Button type="default" icon="upload" size="default" className="button-reload">导入学生信息</Button>
             </Upload>
           </Col>
         </Row>

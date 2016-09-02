@@ -2,8 +2,8 @@ import reqwest from 'reqwest'
 import { message } from 'antd'
 
 const Helper = {
-  host: 'http://localhost:8080',
-  //host: 'http://api.xietong.nowui.com',
+  //host: 'http://localhost:8080',
+  host: 'http://api.xietong.nowui.com',
   inputWidth: 390,
   inputSearchWidth: 250,
   formItemLayout: {
