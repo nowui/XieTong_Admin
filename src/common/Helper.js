@@ -3,9 +3,9 @@ import { message } from 'antd'
 
 const Helper = {
   host: 'http://localhost:8080',
-  //host: 'http://api.hongluomeng.nowui.com',
+  //host: 'http://api.xietong.nowui.com',
   inputWidth: 390,
-  inputSearchWidth: 300,
+  inputSearchWidth: 250,
   formItemLayout: {
     labelCol: { span: 3 },
     wrapperCol: { span: 18 }

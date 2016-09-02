@@ -259,7 +259,6 @@ class OperationIndex extends Component {
             </Menu>
           </div>
           <div className={styles.right}>
-            <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
             <Table columns={columns} dataSource={this.state.list} pagination={pagination} />
           </div>
         </div>

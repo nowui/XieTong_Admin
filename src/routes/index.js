@@ -3,7 +3,6 @@ import { Router, Route, IndexRedirect } from 'react-router'
 import NotFound from '../components/NotFound'
 import Login from '../components/Login'
 import Logout from '../components/Logout'
-import Register from '../components/Register'
 import Main from '../components/Main'
 import ProductIndex from '../components/product/Index'
 import ProductDetail from '../components/product/Detail'
@@ -118,7 +117,6 @@ const Routes = ({ history }) =>
     	</Route>
 	    <Route path="login" component={Login}></Route>
         <Route path="logout" component={Logout}></Route>
-        <Route path="register" component={Register}></Route>
 	    <Route path="*" component={NotFound}></Route>
     </Route>
   </Router>

@@ -147,10 +147,10 @@ class CourseIndex extends Component {
     	<Spin size="large" spinning={this.state.isLoad}>
         <Row className="ant-spin-container-header">
           <Col span={12}>
-            <h1>班级列表</h1>
+            <h1>课程列表</h1>
             <Breadcrumb>
               <Breadcrumb.Item>系统首页</Breadcrumb.Item>
-              <Breadcrumb.Item>班级列表</Breadcrumb.Item>
+              <Breadcrumb.Item>课程列表</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>

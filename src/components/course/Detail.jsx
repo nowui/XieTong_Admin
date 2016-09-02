@@ -109,11 +109,11 @@ class CourseDetail extends Component {
     	<Spin size="large" spinning={this.state.isLoad}>
         <Row className="ant-spin-container-header">
           <Col span={12}>
-            <h1>班级表单</h1>
+            <h1>课程表单</h1>
             <Breadcrumb>
               <Breadcrumb.Item>系统首页</Breadcrumb.Item>
-              <Breadcrumb.Item>班级列表</Breadcrumb.Item>
-              <Breadcrumb.Item>班级表单</Breadcrumb.Item>
+              <Breadcrumb.Item>课程列表</Breadcrumb.Item>
+              <Breadcrumb.Item>课程表单</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
           <Col span={12} className={styles.menu}>
@@ -149,8 +149,8 @@ class CourseDetail extends Component {
           <FormItem {...Helper.formItemLayout} label="上课时间" >
             <Select {...getFieldProps('course_class', {rules: [{required: true, message: Helper.required}]})} style={{width: Helper.inputWidth}} placeholder="请选择上课时间">
               <Option value="17">星期一第七节</Option>
-              <Option value="18">星期一第八节</Option>
               <Option value="27">星期二第七节</Option>
+              <Option value="28">星期二第八节</Option>
               <Option value="47">星期四第七节</Option>
               <Option value="48">星期四第八节</Option>
               <Option value="56">星期五第六节</Option>

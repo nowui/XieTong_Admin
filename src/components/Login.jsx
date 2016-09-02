@@ -11,8 +11,8 @@ class Login extends Component {
     super(props)
 
     this.state = {
-      user_account: 'admin',
-      user_password: 'admin'
+      user_account: '',
+      user_password: ''
     }
   }
 
@@ -75,7 +75,7 @@ class Login extends Component {
         <Form horizontal>
           <FormItem
             {...formItemLayout}
-            label="手机号码"
+            label="帐号"
           >
             <Input {...getFieldProps('user_account', {
               rules: [{
@@ -84,7 +84,7 @@ class Login extends Component {
               }],
             })}
             type="text"
-            placeholder="请输入账户名"
+            placeholder="请输入帐号"
             />
           </FormItem>
           <FormItem
@@ -104,7 +104,6 @@ class Login extends Component {
           </FormItem>
           <FormItem wrapperCol={{ offset: 6 }}>
             <Button type="primary" icon="check-circle" size="default" onClick={this.onClickSubmit.bind(this)}>确定</Button>
-            <Button type="default" icon="plus-circle" style={{ marginLeft: 8 }} size="default" onClick={this.onClickRegister.bind(this)}>注册</Button>
           </FormItem>
         </Form>
       </div>
