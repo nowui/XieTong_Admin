@@ -102,6 +102,10 @@ class LogIndex extends Component {
       dataIndex: 'log_create_time',
       key: 'log_create_time'
     }, {
+      title: '平台',
+      dataIndex: 'log_platform',
+      key: 'log_platform'
+    }, {
       title: '状态',
       dataIndex: 'log_code',
       key: 'log_code'
