@@ -48,6 +48,18 @@ class CourseIndex extends Component {
       success: function(data) {
         page = currentPage
 
+        for(let i = 0; i < data.list.length; i++) {
+          let course = data.list[i]
+
+          for(let j = 0; j < Helper.course_class.length; j++) {
+            if(course.course_class == Helper.course_class[j].value) {
+              course.course_class = Helper.course_class[j].text
+
+              break
+            }
+          }
+        }
+
         self.setState({
           page: currentPage,
           total: data.total,
@@ -127,6 +139,10 @@ class CourseIndex extends Component {
       title: '名称',
       dataIndex: 'course_name',
       key: 'course_name'
+    }, {
+      title: '时间',
+      dataIndex: 'course_class',
+      key: 'course_class'
     }, {
       width: 150,
       title: '操作',
