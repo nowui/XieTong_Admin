@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { Spin, Row, Col, Breadcrumb, Table, Button, Modal } from 'antd'
+import { Spin, Row, Col, Breadcrumb, Table, Button, Modal, message } from 'antd'
 import Helper from '../../common/Helper'
 
 import styles from '../Style.less'
@@ -62,7 +62,7 @@ class WebConfigIndex extends Component {
     })
   }
 
-  del = function(web_config_id) {
+  del = function() {
     let self = this
 
     self.setState({
@@ -70,12 +70,12 @@ class WebConfigIndex extends Component {
     })
 
     Helper.ajax({
-      url: '/web/config/delete',
+      url: '/course/apply/delete',
       data: {
-        web_config_id: web_config_id
+
       },
       success: function(data) {
-        self.load(page)
+        message.success('操作成功', Helper.duration)
       },
       complete: function() {
         self.setState({
@@ -103,14 +103,14 @@ class WebConfigIndex extends Component {
     })
   }
 
-  onClickDel(web_config_id) {
+  onClickDel() {
     let self = this
 
     confirm({
       title: Helper.message,
       content: Helper.delete,
       onOk() {
-        self.del(web_config_id)
+        self.del()
       },
       onCancel() {
 
@@ -134,8 +134,6 @@ class WebConfigIndex extends Component {
       render: (text, record, index) => (
         <span>
           <a onClick={this.onClickEdit.bind(this, record.web_config_id)}>修改</a>
-          <span className="ant-divider"></span>
-          <a onClick={this.onClickDel.bind(this, record.web_config_id)}>删除</a>
         </span>
       )
     }]
@@ -159,6 +157,7 @@ class WebConfigIndex extends Component {
           </Col>
           <Col span={12} className={styles.menu}>
             <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
+            <Button type="default" icon="delete" size="default" className="button-reload" onClick={this.onClickDel.bind(this)}>删除选课数据</Button>
           </Col>
         </Row>
 
