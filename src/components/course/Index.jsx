@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { Spin, Row, Col, Breadcrumb, Table, Button, Modal } from 'antd'
+import { Spin, Row, Col, Breadcrumb, Table, Button, Modal, Form, Input, Select } from 'antd'
 import Helper from '../../common/Helper'
 
 import styles from '../Style.less'
@@ -8,6 +8,8 @@ import styles from '../Style.less'
 const confirm = Modal.confirm
 
 let page = 1
+let course_class = ''
+let course_name = ''
 
 class CourseIndex extends Component {
 
@@ -25,7 +27,17 @@ class CourseIndex extends Component {
   componentDidMount() {
     this.props.onSelectMenu('/course/index')
 
+    this.props.form.setFieldsValue({
+      course_class: course_class,
+      course_name: course_name
+    })
+
     this.load(page)
+  }
+
+  componentWillUnmount() {
+    course_class = this.props.form.getFieldValue('course_class')
+    course_name = this.props.form.getFieldValue('course_name')
   }
 
   onChange = function(currentPage) {
@@ -43,7 +55,9 @@ class CourseIndex extends Component {
       url: '/course/list',
       data: {
         page: currentPage,
-        limit: Helper.limit
+        limit: Helper.limit,
+        course_class: self.props.form.getFieldValue('course_class'),
+        course_name: self.props.form.getFieldValue('course_name')
       },
       success: function(data) {
         page = currentPage
@@ -135,6 +149,10 @@ class CourseIndex extends Component {
   }
 
   render() {
+    const FormItem = Form.Item
+    const Option = Select.Option
+    const { getFieldProps, getFieldError, isFieldValidating } = this.props.form
+
     const columns = [{
       title: '名称',
       dataIndex: 'course_name',
@@ -180,10 +198,40 @@ class CourseIndex extends Component {
           </Col>
         </Row>
 
+        <Form horizontal className="ant-advanced-search-form">
+          <Row>
+            <Col sm={10}>
+              <FormItem {...{labelCol: { span: 6 }, wrapperCol: { span: 18 }}} label="时间" >
+                <Select {...getFieldProps('course_class')} style={{width: Helper.inputSearchWidth}} placeholder="请选择时间">
+                  <Option value="">所有时间</Option>
+                  <Option value="17">星期一第七节</Option>
+                  <Option value="27">星期二第七节</Option>
+                  <Option value="28">星期二第八节</Option>
+                  <Option value="47">星期四第七节</Option>
+                  <Option value="48">星期四第八节</Option>
+                  <Option value="56">星期五第六节</Option>
+                </Select>
+              </FormItem>
+            </Col>
+            <Col sm={10}>
+              <FormItem {...{labelCol: { span: 6 }, wrapperCol: { span: 18 }}} label="名称" >
+                <Input {...getFieldProps('course_name')} type="text" style={{width: Helper.inputSearchWidth}} placeholder="请输入名称" />
+              </FormItem>
+            </Col>
+            <Col sm={4} style={{ textAlign: 'right'}}>
+              <Button type="ghost" icon="search" size="default" className="button-reload" onClick={this.load.bind(this, page)}>搜索</Button>
+            </Col>
+          </Row>
+        </Form>
+
         <Table columns={columns} dataSource={this.state.list} pagination={pagination} />
       </Spin>
     )
   }
 }
+
+CourseIndex = Form.create({
+
+})(CourseIndex)
 
 export default withRouter(CourseIndex)

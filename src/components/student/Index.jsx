@@ -50,8 +50,8 @@ class StudentIndex extends Component {
   }
 
   componentWillUnmount() {
-    grade_id = self.props.form.getFieldValue('grade_id')
-    student_name = self.props.form.getFieldValue('student_name')
+    grade_id = this.props.form.getFieldValue('grade_id')
+    student_name = this.props.form.getFieldValue('student_name')
   }
 
   onChange = function(currentPage) {
