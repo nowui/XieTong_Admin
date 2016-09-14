@@ -194,12 +194,17 @@ class CourseIndex extends Component {
           <Col span={12} className={styles.menu}>
             <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
             <Button type="primary" icon="plus-circle" size="default" className="button-reload" onClick={this.onClickAdd.bind(this)}>新增</Button>
-            <Button type="default" icon="export" size="default" className="button-reload" onClick={this.export.bind(this, page)}>导出课程报名信息</Button>
+            <Button type="default" icon="export" size="default" className="button-reload" onClick={this.export.bind(this, page)}>导出选课数据</Button>
           </Col>
         </Row>
 
         <Form horizontal className="ant-advanced-search-form">
           <Row>
+            <Col sm={10}>
+              <FormItem {...{labelCol: { span: 6 }, wrapperCol: { span: 18 }}} label="名称" >
+                <Input {...getFieldProps('course_name')} type="text" style={{width: Helper.inputSearchWidth}} placeholder="请输入名称" />
+              </FormItem>
+            </Col>
             <Col sm={10}>
               <FormItem {...{labelCol: { span: 6 }, wrapperCol: { span: 18 }}} label="时间" >
                 <Select {...getFieldProps('course_class')} style={{width: Helper.inputSearchWidth}} placeholder="请选择时间">
@@ -211,11 +216,6 @@ class CourseIndex extends Component {
                   <Option value="48">星期四第八节</Option>
                   <Option value="56">星期五第六节</Option>
                 </Select>
-              </FormItem>
-            </Col>
-            <Col sm={10}>
-              <FormItem {...{labelCol: { span: 6 }, wrapperCol: { span: 18 }}} label="名称" >
-                <Input {...getFieldProps('course_name')} type="text" style={{width: Helper.inputSearchWidth}} placeholder="请输入名称" />
               </FormItem>
             </Col>
             <Col sm={4} style={{ textAlign: 'right'}}>

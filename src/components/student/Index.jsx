@@ -316,7 +316,7 @@ class StudentIndex extends Component {
             <Button type="default" icon="delete" size="default" className="button-reload" onClick={this.onClickDel2.bind(this)}>删除所选</Button>
             <Button type="default" icon="export" size="default" className="button-reload" onClick={this.export.bind(this, page)}>导出模板</Button>
             <Upload {...props}>
-              <Button type="default" icon="upload" size="default" className="button-reload">导入学生信息</Button>
+              <Button type="default" icon="upload" size="default" className="button-reload">导入学生数据</Button>
             </Upload>
           </Col>
         </Row>
