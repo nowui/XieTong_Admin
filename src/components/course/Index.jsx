@@ -154,13 +154,21 @@ class CourseIndex extends Component {
     const { getFieldProps, getFieldError, isFieldValidating } = this.props.form
 
     const columns = [{
-      title: '名称',
+      title: '课程名称',
       dataIndex: 'course_name',
       key: 'course_name'
     }, {
-      title: '时间',
+      title: '限制人数',
+      dataIndex: 'course_apply_limit',
+      key: 'course_apply_limit'
+    }, {
+      title: '上课时间',
       dataIndex: 'course_class',
       key: 'course_class'
+    }, {
+      title: '上课地点',
+      dataIndex: 'course_address',
+      key: 'course_address'
     }, {
       width: 150,
       title: '操作',
